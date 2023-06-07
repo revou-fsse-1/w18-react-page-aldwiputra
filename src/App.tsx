@@ -3,10 +3,12 @@ import { places } from './data/places';
 import PhotoCard from './components/PhotoCard';
 import Header from './components/Header';
 import Like from './components/Like';
+import Modal from './components/Modal';
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
   const [placesState, setPlaceState] = useState(places);
+  const [showModal, setShowModal] = useState(true);
 
   const filteredList = placesState.filter(place =>
     searchInput === '' ? true : place.title.toLowerCase().includes(searchInput.toLowerCase())
@@ -38,10 +40,12 @@ function App() {
           />
         ))}
       </section>
-      <div className='fixed top-5 right-5 flex items-center gap-2 z-50 p-4 bg-gray-800 rounded-lg ring-2 ring-gray-800/40'>
+      <div className='fixed top-5 right-5 flex items-center gap-2 z-50 py-2 px-4 bg-emerald-600 rounded-lg ring-4 ring-emerald-600/20'>
         <Like w={4} h={4} />
         <p className='text-md font-medium whitespace-nowrap'>Likes ({totalLikes})</p>
       </div>
+
+      {showModal && <Modal setShowModal={setShowModal} />}
     </main>
   );
 }

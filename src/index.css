@@ -5,3 +5,7 @@
 .flow > * + * {
   @apply mt-5;
 }
+
+.auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}

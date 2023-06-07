@@ -36,15 +36,18 @@ function App() {
           onChange={e => setSearchInput(e.target.value)}
         />
       </header>
-      {filteredList.map((item, idx) => (
-        <PhotoCard
-          idx={idx}
-          title={item.title}
-          imgUrl={item.imgUrl}
-          isLiked={item.isLiked}
-          updatePlace={updatePlace}
-        />
-      ))}
+      <section className='max-w-5xl mx-auto grid gap-4 auto-fit mt-10'>
+        {filteredList.map((item, idx) => (
+          <PhotoCard
+            key={item.id}
+            idx={idx}
+            title={item.title}
+            imgUrl={item.imgUrl}
+            isLiked={item.isLiked}
+            updatePlace={updatePlace}
+          />
+        ))}
+      </section>
     </main>
   );
 }

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import Logo from './components/Logo';
 import { places } from './data/places';
 import PhotoCard from './components/PhotoCard';
+import Header from './components/Header';
+import Like from './components/Like';
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
@@ -10,6 +11,7 @@ function App() {
   const filteredList = placesState.filter(place =>
     searchInput === '' ? true : place.title.toLowerCase().includes(searchInput.toLowerCase())
   );
+  const totalLikes = placesState.filter(place => place.isLiked).length;
 
   function updatePlace(idx: number, isLiked: boolean) {
     const newArray = [...placesState];
@@ -23,19 +25,7 @@ function App() {
 
   return (
     <main className='px-6 font-inter py-5'>
-      <header className='flow flex flex-col items-center'>
-        <div className='max-w-sm'>
-          <Logo />
-        </div>
-        <input
-          type='text'
-          className='bg-gray-700 block text-white-900 px-3 p-2 text-lg rounded-md w-full max-w-[40ch] focus:outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500'
-          id='search-filter'
-          value={searchInput}
-          placeholder='Search'
-          onChange={e => setSearchInput(e.target.value)}
-        />
-      </header>
+      <Header searchInput={searchInput} setSearchInput={setSearchInput} />
       <section className='max-w-5xl mx-auto grid gap-6 auto-fit mt-10 mb-10'>
         {filteredList.map((item, idx) => (
           <PhotoCard
@@ -48,6 +38,10 @@ function App() {
           />
         ))}
       </section>
+      <div className='fixed top-5 right-5 flex items-center gap-2 z-50 p-4 bg-gray-800 rounded-lg ring-2 ring-gray-800/40'>
+        <Like w={4} h={4} />
+        <p className='text-md font-medium whitespace-nowrap'>Likes ({totalLikes})</p>
+      </div>
     </main>
   );
 }

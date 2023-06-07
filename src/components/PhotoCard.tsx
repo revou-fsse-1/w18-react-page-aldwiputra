@@ -8,19 +8,25 @@ type PhotoCardProps = {
 
 function PhotoCard(props: PhotoCardProps) {
   return (
-    <article className='group relative rounded-md overflow-hidden'>
-      <div className='pt-10 pb-2 absolute w-full bottom-0 text-center bg-gradient-to-t from-0% from-black/0 to-transparent to-75% group-hover:from-black/100 transition-colors'>
-        <h3 className='font-semibold text-lg translate-y-[120%] group-hover:translate-y-0 transition-transform'>
-          {props.title}
-        </h3>
+    <article className='group grid grid-cols-1 grid-rows-1 rounded-md overflow-hidden hover:scale-110 hover:z-10 transition-transform duration-250 origin-top'>
+      <div className='z-10 pt-10 pb-4 col-start-1 col-end-2 row-start-1 row-end-2 w-full self-end text-center h-fit bg-gradient-to-t from-0% from-black to-90% to-transparent'>
+        <h3 className='font-semibold text-lg duration-200 delay-250 ease-in'>{props.title}</h3>
       </div>
-      <img className='block w-full aspect-[11/16] object-cover' src={props.imgUrl} alt='tada' />
+      <img
+        className='block w-full col-start-1 col-end-2 row-start-1 row-end-2 aspect-[11/16] object-cover'
+        src={props.imgUrl}
+        alt='tada'
+      />
       <button
-        className='absolute right-0 top-0'
+        className={`col-start-1 col-end-2 row-start-1 row-end-2 w-fit h-fit justify-self-end px-4 py-1  font-normal rounded-lg  ${
+          props.isLiked
+            ? 'bg-blue-500 text-gray-200 ring-blue-500/25'
+            : 'bg-gray-200 text-gray-800 ring-gray-200/25'
+        } ring-2  -translate-x-4 translate-y-4`}
         onClick={() => {
           props.updatePlace(props.idx, !props.isLiked ? true : false);
         }}>
-        {props.isLiked ? 'Unlike' : 'Like'}
+        {props.isLiked ? 'Liked' : 'Like'}
       </button>
     </article>
   );

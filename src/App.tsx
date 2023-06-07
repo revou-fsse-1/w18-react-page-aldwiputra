@@ -36,7 +36,7 @@ function App() {
           onChange={e => setSearchInput(e.target.value)}
         />
       </header>
-      <section className='max-w-5xl mx-auto grid gap-4 auto-fit mt-10'>
+      <section className='max-w-5xl mx-auto grid gap-6 auto-fit mt-10 mb-10'>
         {filteredList.map((item, idx) => (
           <PhotoCard
             key={item.id}

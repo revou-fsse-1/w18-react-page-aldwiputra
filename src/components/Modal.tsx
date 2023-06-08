@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 type ModalProps = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsRegistered: React.Dispatch<React.SetStateAction<boolean>>;
 };
 type FormError = {
   email: string | null;
@@ -62,6 +63,7 @@ function Modal(props: ModalProps) {
 
   useEffect(() => {
     if (submitted && !formStateError.email && !formStateError.firstName && !formStateError.lastName) {
+      props.setIsRegistered(true);
       props.setShowModal(false);
     }
   }, [submitted, formStateError, props]);
@@ -117,7 +119,7 @@ function Modal(props: ModalProps) {
         </div>
         <button
           onClick={handleSubmit}
-          className='py-3 w-full mt-8 bg-emerald-500 font-medium text-lg text-gray-200 rounded-lg hover:ring-2 hover:ring-emerald-500/20 hover:bg-sky-500'>
+          className='py-3 w-full mt-8 bg-emerald-500 font-medium text-lg text-gray-200 rounded-lg hover:ring-4 hover:ring-emerald-500 hover:bg-emerald-600'>
           Register
         </button>
       </div>

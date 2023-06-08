@@ -1,6 +1,6 @@
 function Snackbar() {
   return (
-    <div className='fixed flex items-center gap-2 bottom-6 left-1/2 -translate-x-1/2 bg-slate-200 text-zinc-900 px-8 py-4 rounded-md z-50 ring-4 ring-slate-200/20 min-w-[15rem]'>
+    <div className='fixed flex items-center gap-2 bottom-6 left-1/2 -translate-x-1/2 bg-slate-200 text-zinc-900 px-4 md:px-8 py-4 rounded-md z-50 ring-4 ring-slate-200/20 min-w-[15rem]'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='none'
@@ -15,7 +15,7 @@ function Snackbar() {
         />
       </svg>
 
-      <p className='md:whitespace-nowrap text-sm md:text-base'>
+      <p className='md:whitespace-nowrap text-xs sm:text-sm md:text-base'>
         Your registration has been succesfully submitted.
       </p>
     </div>

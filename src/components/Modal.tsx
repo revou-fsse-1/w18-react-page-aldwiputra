@@ -54,10 +54,10 @@ function Modal(props: ModalProps) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mouseup', handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mouseup', handleClickOutside);
     };
   });
 
@@ -72,7 +72,7 @@ function Modal(props: ModalProps) {
     <div className='fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-zinc-900/80 backdrop-blur-sm'>
       <div
         ref={formWrapper}
-        className='bg-zinc-200/50 p-8 text-zinc-900 rounded-md w-2/6 min-w-[25rem] border-gray-100/20 border-2 backdrop-blur-sm'>
+        className='bg-zinc-200/50 p-8 text-zinc-900 rounded-md w-2/6 min-w-[22rem] sm:min-w-[30rem] border-gray-100/20 border-2 backdrop-blur-sm'>
         <h2 className='text-3xl font-bold'>Join the Club</h2>
         <div className='h-[1.5px] mt-4 w-full bg-gray-800/20'></div>
         <div className='mt-4'>

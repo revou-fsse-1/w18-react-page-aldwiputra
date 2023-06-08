@@ -31,19 +31,26 @@ function App() {
     <main className='px-6 font-inter py-5'>
       <Header searchInput={searchInput} setSearchInput={setSearchInput} />
       <section className='max-w-5xl mx-auto grid gap-6 auto-fit mt-10 mb-10'>
-        {filteredList.map((item, idx) => (
-          <PhotoCard
-            key={item.id}
-            idx={idx}
-            title={item.title}
-            imgUrl={item.imgUrl}
-            isLiked={item.isLiked}
-            updatePlace={updatePlace}
-          />
-        ))}
+        {filteredList.length ? (
+          filteredList.map((item, idx) => (
+            <PhotoCard
+              key={item.id}
+              idx={idx}
+              title={item.title}
+              imgUrl={item.imgUrl}
+              isLiked={item.isLiked}
+              updatePlace={updatePlace}
+            />
+          ))
+        ) : (
+          <div className='col-span-full text-center'>
+            <p className='block font-medium text-3xl'>No Photos found. Try again.</p>
+          </div>
+        )}
       </section>
       <div className='max-w-5xl mx-auto flex justify-center mb-14'>
         <button
+          disabled={isRegistered}
           onClick={() => setShowModal(true)}
           className='px-8 py-3 rounded-md bg-emerald-600 font-medium text-lg hover:bg-emerald-700 ring-4 ring-emerald-600/20'>
           Join Membership

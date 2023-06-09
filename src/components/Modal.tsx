@@ -32,16 +32,16 @@ function Modal(props: ModalProps) {
     });
 
     if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(formState.email)) {
-      setFormStateError(prev => ({ ...prev, email: 'Email is not valid.' }));
+      setFormStateError((prev) => ({ ...prev, email: 'Email is not valid.' }));
     }
     if (!formState.email) {
-      setFormStateError(prev => ({ ...prev, email: 'Email cannot be empty.' }));
+      setFormStateError((prev) => ({ ...prev, email: 'Email cannot be empty.' }));
     }
     if (!formState.firstName) {
-      setFormStateError(prev => ({ ...prev, firstName: 'Firstname cannot be empty.' }));
+      setFormStateError((prev) => ({ ...prev, firstName: 'Firstname cannot be empty.' }));
     }
     if (!formState.lastName) {
-      setFormStateError(prev => ({ ...prev, lastName: 'Lastname cannot be empty.' }));
+      setFormStateError((prev) => ({ ...prev, lastName: 'Lastname cannot be empty.' }));
     }
 
     setSubmitted(true);
@@ -59,10 +59,15 @@ function Modal(props: ModalProps) {
     return () => {
       document.removeEventListener('mouseup', handleClickOutside);
     };
-  });
+  }, []);
 
   useEffect(() => {
-    if (submitted && !formStateError.email && !formStateError.firstName && !formStateError.lastName) {
+    if (
+      submitted &&
+      !formStateError.email &&
+      !formStateError.firstName &&
+      !formStateError.lastName
+    ) {
       props.setIsRegistered(true);
       props.setShowModal(false);
     }
@@ -85,9 +90,11 @@ function Modal(props: ModalProps) {
             id='email'
             value={formState.email}
             placeholder='johndoe@gmail.com'
-            onChange={e => setFormState({ ...formState, email: e.target.value })}
+            onChange={(e) => setFormState({ ...formState, email: e.target.value })}
           />
-          <span className='block text-sm mt-1 text-red-600 font-medium'>{formStateError.email}</span>
+          <span className='block text-sm mt-1 text-red-600 font-medium'>
+            {formStateError.email}
+          </span>
         </div>
         <div className='mt-4'>
           <label htmlFor='firstName' className='font-medium text-sm'>
@@ -99,9 +106,11 @@ function Modal(props: ModalProps) {
             id='firstName'
             value={formState.firstName}
             placeholder='John'
-            onChange={e => setFormState({ ...formState, firstName: e.target.value })}
+            onChange={(e) => setFormState({ ...formState, firstName: e.target.value })}
           />
-          <span className='block text-sm mt-1 text-red-600 font-medium'>{formStateError.firstName}</span>
+          <span className='block text-sm mt-1 text-red-600 font-medium'>
+            {formStateError.firstName}
+          </span>
         </div>
         <div className='mt-4'>
           <label htmlFor='lastName' className='font-medium text-sm'>
@@ -113,9 +122,11 @@ function Modal(props: ModalProps) {
             id='lastName'
             value={formState.lastName}
             placeholder='Doe'
-            onChange={e => setFormState({ ...formState, lastName: e.target.value })}
+            onChange={(e) => setFormState({ ...formState, lastName: e.target.value })}
           />
-          <span className='block text-sm mt-1 text-red-600 font-medium'>{formStateError.lastName}</span>
+          <span className='block text-sm mt-1 text-red-600 font-medium'>
+            {formStateError.lastName}
+          </span>
         </div>
         <button
           onClick={handleSubmit}

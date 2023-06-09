@@ -22,13 +22,13 @@ Make sure you have the following tools installed on your machine:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/aldwiputra/talentlytica-tech-test.git
+git clone https://github.com/revou-fsse-1/w18-react-page-aldwiputra.git
 ```
 
 ### Navigate to the Project Directory
 
 ```bash
-cd talentlytica-tech-test
+cd w18-react-page-aldwiputra
 ```
 
 ### Install Dependencies

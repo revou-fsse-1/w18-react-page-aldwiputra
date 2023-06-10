@@ -22,7 +22,7 @@ function Modal(props: ModalProps) {
     firstName: null,
     lastName: null,
   });
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit() {
     setFormStateError({
@@ -31,20 +31,30 @@ function Modal(props: ModalProps) {
       lastName: null,
     });
 
+    let hasError = false;
+
     if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(formState.email)) {
       setFormStateError((prev) => ({ ...prev, email: 'Email is not valid.' }));
+      hasError = true;
     }
     if (!formState.email) {
       setFormStateError((prev) => ({ ...prev, email: 'Email cannot be empty.' }));
+      hasError = true;
     }
     if (!formState.firstName) {
       setFormStateError((prev) => ({ ...prev, firstName: 'Firstname cannot be empty.' }));
+      hasError = true;
     }
     if (!formState.lastName) {
       setFormStateError((prev) => ({ ...prev, lastName: 'Lastname cannot be empty.' }));
+      hasError = true;
     }
 
-    setSubmitted(true);
+    // setSubmitted(true);
+    if (!hasError) {
+      props.setIsRegistered(true);
+      props.setShowModal(false);
+    }
   }
 
   useEffect(() => {
@@ -61,17 +71,17 @@ function Modal(props: ModalProps) {
     };
   }, []);
 
-  useEffect(() => {
-    if (
-      submitted &&
-      !formStateError.email &&
-      !formStateError.firstName &&
-      !formStateError.lastName
-    ) {
-      props.setIsRegistered(true);
-      props.setShowModal(false);
-    }
-  }, [submitted, formStateError, props]);
+  // useEffect(() => {
+  //   if (
+  //     submitted &&
+  //     !formStateError.email &&
+  //     !formStateError.firstName &&
+  //     !formStateError.lastName
+  //   ) {
+  //     props.setIsRegistered(true);
+  //     props.setShowModal(false);
+  //   }
+  // }, [submitted, formStateError, props]);
 
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-zinc-900/80 backdrop-blur-sm'>

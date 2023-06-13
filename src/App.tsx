@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { places } from './data/places';
 import PhotoCard from './components/PhotoCard';
 import Header from './components/Header';
@@ -12,10 +12,17 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const filteredList = placesState.filter(place =>
-    searchInput === '' ? true : place.title.toLowerCase().includes(searchInput.toLowerCase())
+  const filteredList = useMemo(
+    () =>
+      placesState.filter((place) =>
+        searchInput === '' ? true : place.title.toLowerCase().includes(searchInput.toLowerCase())
+      ),
+    [placesState, searchInput]
   );
-  const totalLikes = placesState.filter(place => place.isLiked).length;
+  const totalLikes = useMemo(
+    () => placesState.filter((place) => place.isLiked).length,
+    [placesState]
+  );
 
   function updatePlace(idx: number, isLiked: boolean) {
     const newArray = [...placesState];
